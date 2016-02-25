@@ -33,6 +33,7 @@ public class HttpUtil {
 					String line = null;
 					while((line =reader.readLine()) != null){
 						response.append(line);
+						
 					}
 					//返回成功时回调 onFinish函数
 					if(listener != null){
