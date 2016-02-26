@@ -172,6 +172,7 @@ public class ChooseAreaActivity extends Activity {
 			address = "http://www.weather.com.cn/data/list3/city"+code+".xml";
 		}else{
 			address = "http://www.weather.com.cn/data/list3/city.xml";
+			//address = "http://www.baidu.com";
 		}
 		//显示加载的对话框
 		showProgressDialog();
@@ -211,14 +212,14 @@ public class ChooseAreaActivity extends Activity {
 			}
 			
 			@Override
-			public void onError(Exception e) {
+			public void onError(final Exception e) {
 				//回到主线程处理
 				runOnUiThread(new Runnable() {
 					
 					@Override
 					public void run() {
 						closeProgressDialog();//关闭对话框
-						Toast.makeText(ChooseAreaActivity.this, "未找到地址信息", 
+						Toast.makeText(ChooseAreaActivity.this, "未找到地址信息" , 
 								Toast.LENGTH_LONG).show();
 					}
 				});

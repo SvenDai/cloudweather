@@ -129,7 +129,7 @@ public class CloudWeatherDB {
 			contentValues.put("county_name", county.getCountyName());
 			contentValues.put("county_code", county.getCountyCode());
 			contentValues.put("city_id", county.getCityId());
-			db.insert("country", null, contentValues);
+			db.insert("County", null, contentValues);
 		}
 	}
 	
