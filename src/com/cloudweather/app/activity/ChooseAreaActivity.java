@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cloudweather.app.R;
-import com.cloudweather.app.R.id;
 import com.cloudweather.app.db.CloudWeatherDB;
 import com.cloudweather.app.model.City;
 import com.cloudweather.app.model.County;
@@ -21,7 +20,10 @@ import com.cloudweather.app.util.HttpUtil;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -71,6 +73,13 @@ public class ChooseAreaActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//先读取标志位，如果已经选择了县级城市，直接跳转到天气信息界面
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		if(prefs.getBoolean("city_selected", false)){
+			Intent intent= new Intent(this,WeatherActivity.class);
+			startActivity(intent);
+			finish();
+		}
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.choose_area);
 		listView = (ListView) findViewById(R.id.list_view);
@@ -94,6 +103,14 @@ public class ChooseAreaActivity extends Activity {
 						selectedCity = citiesList.get(position);
 						//加载县级数据
 						queryCounty();
+					}else if(currentLevel == LEVEL_COUNTY){
+						//点击县级列表转到显示天气界面
+						String countyCode = countiesList.get(position).getCountyCode();
+						Intent intent = new Intent(ChooseAreaActivity.this, WeatherActivity.class);
+						//传递县级代号到显示天气信息的活动
+						intent.putExtra("county_code", countyCode);
+						startActivity(intent);
+						finish();
 					}
 			}
 			
