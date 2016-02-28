@@ -28,7 +28,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -67,15 +66,23 @@ public class ChooseAreaActivity extends Activity {
 	//private int selectedLevel;
 	//当前的级别
 	private int currentLevel;
+	
+	/**
+	 * 是否从weatherActivity跳转过来的
+	 */
+	private boolean isFromWeatherActivity;
+	
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//先读取标志位，如果已经选择了县级城市，直接跳转到天气信息界面
+		//获取标志位
+		isFromWeatherActivity = getIntent().getBooleanExtra("from_weather_activity", false);
+		//先读取标志位，如果已经选择了县级城市 而且不是从Weatheractivity跳转过来的，直接跳转到天气信息界面
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		if(prefs.getBoolean("city_selected", false)){
+		if(prefs.getBoolean("city_selected", false) && !isFromWeatherActivity){
 			Intent intent= new Intent(this,WeatherActivity.class);
 			startActivity(intent);
 			finish();
@@ -277,6 +284,11 @@ public class ChooseAreaActivity extends Activity {
 		}else if(currentLevel == LEVEL_CITY){
 			queryProvinces();
 		}else{
+			if(isFromWeatherActivity){
+				
+				Intent intent = new Intent(this, WeatherActivity.class);
+				startActivity(intent);
+			}
 			finish();
 		}
 	}

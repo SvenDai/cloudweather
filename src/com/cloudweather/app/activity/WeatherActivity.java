@@ -6,18 +6,22 @@
 package com.cloudweather.app.activity;
 
 import com.cloudweather.app.R;
+import com.cloudweather.app.service.AutoUpdateService;
 import com.cloudweather.app.util.HandleResponseUtility;
 import com.cloudweather.app.util.HttpCallbackListener;
 import com.cloudweather.app.util.WeatherRequestHttpUtil;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,7 +29,7 @@ import android.widget.TextView;
  * @author daifeng
  *
  */
-public class WeatherActivity extends Activity {
+public class WeatherActivity extends Activity implements OnClickListener  {
 	
 	private LinearLayout weatherLayout;
 	//用于显示城市名称
@@ -41,6 +45,14 @@ public class WeatherActivity extends Activity {
 	//
 	private TextView currentDateText;
 	
+	/**
+	 * 切换城市按钮
+	 */
+	private Button switchCity;
+	/**
+	 * 更新天气按钮
+	 */
+	private Button refreshWeather;
 	
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -59,6 +71,11 @@ public class WeatherActivity extends Activity {
 		temphText = (TextView)findViewById(R.id.temp_h);
 		currentDateText = (TextView)findViewById(R.id.current_date);
 		
+		switchCity = (Button)findViewById(R.id.switch_city);
+		refreshWeather = (Button)findViewById(R.id.refresh);
+		switchCity.setOnClickListener(this);
+		refreshWeather.setOnClickListener(this);
+		
 		//得到县级的名称
 		String countyCode = getIntent().getStringExtra("county_code");
 		//得到县级代号去查询天气
@@ -73,6 +90,32 @@ public class WeatherActivity extends Activity {
 			showWeather();
 		}
 		
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.view.View.OnClickListener#onClick(android.view.View)
+	 * 实现切换地区天气和天气手动刷新
+	 */
+	@Override
+	public void onClick(View v) {
+		switch(v.getId()){
+		case R.id.switch_city:
+			Intent intent = new Intent(this, ChooseAreaActivity.class);
+			intent.putExtra("from_weather_activity", true);
+			startActivity(intent);
+			finish();
+			break;
+		case R.id.refresh:
+			publishTimeText.setText("同步中...");
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+			String weatherCode = prefs.getString("weather_code", "");
+			if(!TextUtils.isEmpty(weatherCode)){
+				queryWeatherInfo(weatherCode);
+			}
+			break;
+		default:
+			break;
+		}
 	}
 	/**
 	 *查询代号对应的天气代号 
@@ -147,10 +190,14 @@ public class WeatherActivity extends Activity {
 		cityNameText.setText(prefs.getString("city_name", ""));
 		publishTimeText.setText("今天"+prefs.getString("publish_time", "")+"发布");
 		weatherDespText.setText(prefs.getString("weather", ""));
-		templText.setText(prefs.getString("low_temp", ""));
-		temphText.setText(prefs.getString("high_temp", ""));
+		templText.setText(prefs.getString("low_temp", "")+"℃");
+		temphText.setText(prefs.getString("high_temp", "")+"℃");
 		currentDateText.setText(prefs.getString("current_date", ""));
 		weatherLayout.setVisibility(View.VISIBLE);
 		cityNameText.setVisibility(View.VISIBLE);
+		//激活启动AutoUpdateService服务
+		Intent intent = new Intent(this,AutoUpdateService.class);
+		startService(intent);
 	}
+
 }
