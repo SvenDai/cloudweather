@@ -343,7 +343,57 @@
 				                android:text="H"
 				                android:textSize="40sp" />
 				        </LinearLayout>
-			        </LinearLayout>	  
+       			       	<LinearLayout 
+				            android:id="@+id/life_info_layout"
+						    android:layout_width="match_parent"
+						    android:layout_height="match_parent"
+						    android:orientation="vertical" >
+				            <TextView 
+				                android:id="@+id/wind_dir"
+								android:layout_width="match_parent"
+								android:layout_height="40dp"
+								android:layout_gravity="center_horizontal"
+								android:gravity="center"
+								android:textColor="#eee"
+								android:text="Desp"
+								android:textSize="20sp" />
+				            <TextView 
+				                android:id="@+id/wind_spe"
+								android:layout_width="match_parent"
+								android:layout_height="40dp"
+								android:layout_gravity="center_horizontal"
+								android:gravity="center"
+								android:textColor="#eee"
+								android:text="Desp"
+								android:textSize="20sp" />
+					       	<RelativeLayout 
+							    android:layout_width="match_parent"
+							    android:layout_height="50dp"
+							    android:orientation="horizontal" >
+					           	<TextView 
+						            android:id="@+id/sun_rise"
+						            android:layout_width="wrap_content"
+						            android:layout_height="wrap_content"
+						            android:layout_marginRight="80dp"
+						            android:layout_marginTop="10dp"
+						            android:layout_alignParentRight="true"
+						            android:textColor="#000"
+						            android:text="Time"
+						            android:textSize="18sp" />
+					            <TextView 
+					                android:id="@+id/sun_set"
+					                android:layout_width="wrap_content"
+					                android:layout_height="wrap_content"
+					                android:layout_marginTop="10dp"
+					                android:layout_marginLeft="80dp"
+					                android:layout_alignParentLeft="true"
+					                android:textColor="#000"
+					                android:text="Date"
+					                android:textSize="18sp" />
+				            </RelativeLayout> 
+						</LinearLayout>	
+			        </LinearLayout>	
+
 			</RelativeLayout> 
 		</LinearLayout>          
 	</LinearLayout>

@@ -52,6 +52,14 @@ public class WeatherActivity extends Activity implements OnClickListener  {
 	private TextView temphText;
 	//
 	private TextView currentDateText;
+	//
+	private TextView windDirText;
+	//
+	private TextView windSpeText;
+	//
+	private TextView sunRiseText;
+	//
+	private TextView sunSetText;
 	
 	/**
 	 * 切换城市按钮
@@ -119,6 +127,10 @@ public class WeatherActivity extends Activity implements OnClickListener  {
 		templText = (TextView)findViewById(R.id.temp_l);
 		temphText = (TextView)findViewById(R.id.temp_h);
 		currentDateText = (TextView)findViewById(R.id.current_date);
+		windDirText = (TextView)findViewById(R.id.wind_dir);
+		windSpeText = (TextView)findViewById(R.id.wind_spe);
+		sunRiseText = (TextView)findViewById(R.id.sun_rise);
+		sunSetText = (TextView)findViewById(R.id.sun_set);
 		
 		/**
 		 * 动态加载的view
@@ -304,6 +316,11 @@ public class WeatherActivity extends Activity implements OnClickListener  {
 		templText.setText(prefs.getString("low_temp", "")+"℃");
 		temphText.setText(prefs.getString("high_temp", "")+"℃");
 		currentDateText.setText(prefs.getString("current_date", ""));
+		windDirText.setText(prefs.getString("wind_dir", ""));
+		windSpeText.setText(prefs.getString("wind_spe", ""));
+		sunRiseText.setText(prefs.getString("sun_rise", ""));
+		sunSetText.setText(prefs.getString("sun_set", ""));
+		
 		weatherLayout.setVisibility(View.VISIBLE);
 		cityNameText.setVisibility(View.VISIBLE);
 		//根据天气情况加载动态背景图片

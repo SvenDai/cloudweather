@@ -99,6 +99,29 @@ public class HandleResponseUtility {
 	 */
 	public static void handleWeatherResponse(Context context, String response){
 		
+		//		{
+		//		    "errNum": 0,
+		//		    "errMsg": "success",
+		//		    "retData": {
+		//		        "city": "上海",
+		//		        "pinyin": "shanghai",
+		//		        "citycode": "101020100",
+		//		        "date": "16-03-23",
+		//		        "time": "11:00",
+		//		        "postCode": "200000",
+		//		        "longitude": 121.445,
+		//		        "latitude": 31.213,
+		//		        "altitude": "19",
+		//		        "weather": "阴",
+		//		        "temp": "12",
+		//		        "l_tmp": "7",
+		//		        "h_tmp": "12",
+		//		        "WD": "东北风",
+		//		        "WS": "3-4级(10~17km/h)",
+		//		        "sunrise": "05:53",
+		//		        "sunset": "18:07"
+		//		    }
+		//		}
 		try {
 			JSONObject jsonObject = new JSONObject(response);
 			JSONObject weatherInfo = jsonObject.getJSONObject("retData");
@@ -108,9 +131,14 @@ public class HandleResponseUtility {
 			String weather = weatherInfo.getString("weather");
 			String lowTemp = weatherInfo.getString("l_tmp");
 			String highTemp = weatherInfo.getString("h_tmp");
+			String windDir = weatherInfo.getString("WD");
+			String windSpe = weatherInfo.getString("WS");
+			String sunRise = weatherInfo.getString("sunrise");
+			String sunSet = weatherInfo.getString("sunset");
 			//进行存储
+
 			saveWeatherInfo(context, cityName, weatherCode, publishTime, weather, 
-					lowTemp, highTemp);
+					lowTemp, highTemp, windDir, windSpe, sunRise, sunSet);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -120,7 +148,8 @@ public class HandleResponseUtility {
 	 * 保存解析好完成后的天气信息数据，到sharedpreferences
 	 */
 	public static void saveWeatherInfo(Context context, String cityName, String weatherCode, 
-			String publishTime, String weather, String lowTemp, String highTemp){
+			String publishTime, String weather, String lowTemp, String highTemp, String windDir,
+			String windSpe, String sunRise, String sunSet ){
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年M月d日",Locale.CHINA);
 		
 		SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
@@ -132,6 +161,10 @@ public class HandleResponseUtility {
 		editor.putString("low_temp", lowTemp);
 		editor.putString("high_temp", highTemp);
 		editor.putString("current_date", simpleDateFormat.format(new Date()));
+		editor.putString("wind_dir", windDir);
+		editor.putString("wind_spe", windSpe);
+		editor.putString("sun_rise", sunRise);
+		editor.putString("sun_set", sunSet);
 		editor.commit();
 	}
 }
