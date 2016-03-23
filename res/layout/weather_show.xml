@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-
-    <RelativeLayout 
+    			 
+	android:id="@+id/alllayout"
+    android:orientation="vertical"  
+    android:layout_width="fill_parent"  
+    android:layout_height="fill_parent" 
+    android:background="#fffdf2"       
+    android:gravity="left"   
+    >
+	<!-- 栏目标题 -->     
+	<RelativeLayout 
         android:layout_width="match_parent"
 		android:layout_height="50dp"
-		android:background="#ffffff" >
+		android:background="@drawable/yjjc_b_01" >
         
         <Button 
             android:id="@+id/switch_city"
@@ -37,81 +41,310 @@
             android:background="@drawable/refresh" />
         
     </RelativeLayout>
-    
-    <RelativeLayout 
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@drawable/background" >
-        
-        <TextView 
-            android:id="@+id/publish_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:textColor="#FFF"
-            android:textSize="18sp" />
-            
-        <LinearLayout 
-            android:id="@+id/weather_info_layout"
-		    android:layout_width="match_parent"
-		    android:layout_height="match_parent"
-		    android:layout_centerInParent="true"
-		    android:orientation="vertical" >
-            
-            <TextView 
-                android:id="@+id/current_date"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:textColor="#FFF"
-                android:textSize="18sp" />
-               
-            <TextView 
-                android:id="@+id/weather_desp"
-				android:layout_width="wrap_content"
-				android:layout_height="60dp"
-				android:layout_gravity="center_horizontal"
-				android:gravity="center"
-				android:textColor="#FFF"
-				android:textSize="40sp" />
-               
-            <LinearLayout 
-			    android:layout_width="wrap_content"
-			    android:layout_height="60dp"
-			    android:layout_gravity="center_horizontal"
-			    android:orientation="horizontal" >
-	            
-	            <TextView 
-	                android:id="@+id/temp_l"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:layout_gravity="center_vertical"
-					android:textColor="#FFF"
-					android:textSize="40sp" />	
-	            
-	            <TextView 
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:layout_gravity="center_vertical"
-	                android:layout_marginLeft="10dp"
-	                android:layout_marginRight="10dp"
-	                android:text="~"
-	                android:textColor="#FFF"
-	                android:textSize="40sp" />
-	            
-	            <TextView
-	                android:id="@+id/temp_h"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:layout_gravity="center_vertical"
-	                android:textColor="#FFF"
-	                android:textSize="40sp" />
-	                
-	        </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
-    
+	<!-- 内容 -->     
+	<LinearLayout 
+	    android:orientation="vertical"  
+	    android:layout_width="fill_parent"  
+	    android:layout_height="fill_parent" 
+	    android:background="@drawable/yjjc_b_02"  
+	    android:gravity="left"   
+	    > 
+		<LinearLayout
+		   android:orientation="horizontal"  
+		   android:layout_width="fill_parent"  
+		   android:layout_height="wrap_content" 
+		   android:gravity="left"  
+		   >
+			<!-- 背景 -->
+			<RelativeLayout 
+				android:id="@+id/today_yubao" 
+			    android:orientation="vertical"  
+			    android:layout_width="fill_parent"  
+			    android:layout_height="fill_parent"  
+			    android:gravity="left"   
+			    >    
+				<!-- 动态效果 -->
+				<!-- 晴 -->
+				<RelativeLayout 
+				    android:orientation="vertical"  
+				    android:layout_width="fill_parent"  
+				    android:layout_height="fill_parent"
+				    android:visibility="invisible"  
+				    android:id="@+id/weather_qing"
+				    android:gravity="left"> 
+				</RelativeLayout>
+				<!-- 多云 -->
+				<RelativeLayout
+				    android:orientation="vertical"  
+				    android:layout_width="fill_parent"  
+				    android:layout_height="fill_parent"
+				    android:visibility="invisible"  
+				    android:id="@+id/weather_day_duoyun"
+				    android:gravity="left">		
+				</RelativeLayout>
+				<!-- 白天阴-->
+				<RelativeLayout
+				    android:orientation="vertical"  
+				    android:layout_width="fill_parent"  
+				    android:layout_height="fill_parent"
+				    android:visibility="invisible"  
+				    android:id="@+id/weather_day_yin"
+				    android:gravity="left"> 
+				</RelativeLayout>
+				<!-- 晚上阴 -->
+				<RelativeLayout
+				    android:orientation="vertical"  
+				    android:layout_width="fill_parent"  
+				    android:layout_height="fill_parent"
+				    android:visibility="invisible"  
+				    android:id="@+id/weather_night_yin"
+				    android:gravity="left"> 
+				</RelativeLayout>
+				<!-- 雾 -->
+				<RelativeLayout
+				    android:orientation="vertical"  
+				    android:layout_width="fill_parent"  
+				    android:layout_height="fill_parent"
+				    android:visibility="invisible"  
+				    android:id="@+id/weather_wu"
+				    android:gravity="left"> 
+				</RelativeLayout>
+				<!-- 霾 -->
+				<RelativeLayout
+				    android:orientation="vertical"  
+				    android:layout_width="fill_parent"  
+				    android:layout_height="fill_parent"
+				    android:visibility="invisible"  
+				    android:id="@+id/weather_mai"
+				    android:gravity="left"> 
+				</RelativeLayout>
+				<!-- 沙-->
+				<RelativeLayout
+				    android:orientation="vertical"  
+				    android:layout_width="fill_parent"  
+				    android:layout_height="fill_parent"
+				    android:visibility="invisible"  
+				    android:id="@+id/weather_sha"
+				    android:gravity="left"> 
+				</RelativeLayout>
+				<!-- 平移图片布局  默认-->
+				<RelativeLayout
+				    android:orientation="vertical"
+				    android:layout_width="fill_parent"
+				    android:layout_height="fill_parent"
+				    android:visibility="visible"
+				    android:gravity="left"
+				    android:id="@+id/weather_move1">
+					    <ImageView 
+						android:id="@+id/m1" 
+					    android:layout_width="fill_parent"  
+					    android:layout_height="fill_parent" 
+					    /> 
+				</RelativeLayout> 
+				<!-- 平移图片布局 -->
+				<RelativeLayout
+				    android:orientation="vertical"
+				    android:layout_width="fill_parent"
+				    android:layout_height="fill_parent"
+				    android:visibility="invisible"
+				    android:gravity="left"
+				    android:id="@+id/weather_move2">
+				    	<ImageView 
+						android:id="@+id/m2" 
+					    android:layout_width="fill_parent"  
+					    android:layout_height="fill_parent" 
+					    />
+				</RelativeLayout> 
+				<!-- 平移图片布局  -->
+				<RelativeLayout
+				    android:orientation="vertical"
+				    android:layout_width="fill_parent"
+				    android:layout_height="fill_parent"
+				    android:visibility="invisible"
+				    android:gravity="left"
+				    android:id="@+id/weather_move3">
+				    	<ImageView 
+						android:id="@+id/m3" 
+					    android:layout_width="fill_parent"  
+					    android:layout_height="fill_parent" 
+					    />
+				</RelativeLayout> 
+				<!-- 平移图片布局  -->
+				<RelativeLayout
+				    android:orientation="vertical"
+				    android:layout_width="fill_parent"
+				    android:layout_height="fill_parent"
+				    android:visibility="invisible"
+				    android:gravity="left"
+				    android:id="@+id/weather_move4">
+				    	<ImageView 
+						android:id="@+id/m4" 
+					    android:layout_width="fill_parent"  
+					    android:layout_height="fill_parent" 
+					    />
+				</RelativeLayout>
+				<!-- 平移图片布局  --> 
+				<RelativeLayout
+				    android:orientation="vertical"
+				    android:layout_width="fill_parent"
+				    android:layout_height="fill_parent"
+				    android:visibility="invisible"
+				    android:gravity="left"
+				    android:id="@+id/weather_move5">
+				    	<ImageView 
+						android:id="@+id/m5" 
+					    android:layout_width="fill_parent"  
+					    android:layout_height="fill_parent" 
+					    />    
+				</RelativeLayout> 
+				<!-- 平移图片布局  -->
+				<RelativeLayout
+				    android:orientation="vertical"
+				    android:layout_width="fill_parent"
+				    android:layout_height="fill_parent"
+				    android:visibility="invisible"
+				    android:gravity="left"
+				    android:id="@+id/weather_move6">
+				        <ImageView 
+						android:id="@+id/m6" 
+					    android:layout_width="fill_parent"  
+					    android:layout_height="fill_parent" 
+					    />
+				</RelativeLayout>
+				<!-- 平移图片布局  --> 
+				<RelativeLayout
+				    android:orientation="vertical"
+				    android:layout_width="fill_parent"
+				    android:layout_height="fill_parent"
+				    android:visibility="invisible"
+				    android:gravity="left"
+				    android:id="@+id/weather_move7">
+				        <ImageView 
+						android:id="@+id/m7" 
+					    android:layout_width="fill_parent"  
+					    android:layout_height="fill_parent" 
+					    />    
+				</RelativeLayout> 
+				<!-- 平移图片布局  -->
+				<RelativeLayout
+				    android:orientation="vertical"
+				    android:layout_width="fill_parent"
+				    android:layout_height="fill_parent"
+				    android:visibility="invisible"
+				    android:id="@+id/weather_move8">
+				        <ImageView 
+						android:id="@+id/m8" 
+					    android:layout_width="fill_parent"  
+					    android:layout_height="fill_parent" 
+					    />    
+				</RelativeLayout> 
+				<!-- 平移图片布局  -->
+				<RelativeLayout
+				    android:orientation="vertical"
+				    android:layout_width="fill_parent"
+				    android:layout_height="fill_parent"
+				    android:visibility="invisible"
+				    android:gravity="left"
+				    android:id="@+id/weather_move9">
+				        <ImageView 
+						android:id="@+id/m9" 
+					    android:layout_width="fill_parent"  
+					    android:layout_height="fill_parent" 
+					    />    
+				</RelativeLayout>
+				<!-- 平移图片布局  --> 
+				<RelativeLayout
+				    android:orientation="vertical"
+				    android:layout_width="fill_parent"
+				    android:layout_height="fill_parent"
+				    android:gravity="left"
+				    android:visibility="invisible"
+				    android:id="@+id/weather_move10">
+				        <ImageView 
+						android:id="@+id/m10" 
+					    android:layout_width="fill_parent"  
+					    android:layout_height="fill_parent" 
+					    />    
+				</RelativeLayout>
+				<!-- 数据内容 --> 
+			        <LinearLayout 
+			            android:id="@+id/weather_info_layout"
+					    android:layout_width="match_parent"
+					    android:layout_height="match_parent"
+					    android:layout_centerInParent="true"
+					    android:orientation="vertical" >
+				       	<RelativeLayout 
+				            android:id="@+id/weather_info_layout_nav"
+						    android:layout_width="match_parent"
+						    android:layout_height="50dp"
+						    android:orientation="horizontal" >
+				           	<TextView 
+					            android:id="@+id/publish_time"
+					            android:layout_width="wrap_content"
+					            android:layout_height="wrap_content"
+					            android:layout_marginRight="10dp"
+					            android:layout_marginTop="10dp"
+					            android:layout_alignParentRight="true"
+					            android:textColor="#000"
+					            android:text="Time"
+					            android:textSize="18sp" />
+				            <TextView 
+				                android:id="@+id/current_date"
+				                android:layout_width="wrap_content"
+				                android:layout_height="wrap_content"
+				                android:layout_marginTop="10dp"
+				                android:layout_marginLeft="10dp"
+				                android:layout_alignParentLeft="true"
+				                android:textColor="#000"
+				                android:text="Date"
+				                android:textSize="18sp" />
+			            </RelativeLayout>  
+			            <TextView 
+			                android:id="@+id/weather_desp"
+							android:layout_width="wrap_content"
+							android:layout_height="60dp"
+							android:layout_gravity="center_horizontal"
+							android:gravity="center"
+							android:textColor="#FFF"
+							android:text="Desp"
+							android:textSize="40sp" />
+			               
+			            <LinearLayout 
+						    android:layout_width="wrap_content"
+						    android:layout_height="60dp"
+						    android:layout_gravity="center_horizontal"
+						    android:orientation="horizontal" >
+				            
+				            <TextView 
+				                android:id="@+id/temp_l"
+				                android:layout_width="wrap_content"
+				                android:layout_height="wrap_content"
+				                android:layout_gravity="center_vertical"
+								android:textColor="#FFF"
+								android:text="L"
+								android:textSize="40sp" />	
+				            
+				            <TextView 
+				                android:layout_width="wrap_content"
+				                android:layout_height="wrap_content"
+				                android:layout_gravity="center_vertical"
+				                android:layout_marginLeft="10dp"
+				                android:layout_marginRight="10dp"
+				                android:text="~"
+				                android:textColor="#FFF"
+				                android:textSize="40sp" />
+				            
+				            <TextView
+				                android:id="@+id/temp_h"
+				                android:layout_width="wrap_content"
+				                android:layout_height="wrap_content"
+				                android:layout_gravity="center_vertical"
+				                android:textColor="#FFF"
+				                android:text="H"
+				                android:textSize="40sp" />
+				        </LinearLayout>
+			        </LinearLayout>	  
+			</RelativeLayout> 
+		</LinearLayout>          
+	</LinearLayout>
 </LinearLayout>
